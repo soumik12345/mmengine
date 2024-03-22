@@ -21,8 +21,10 @@ from mmengine.logging import MMLogger, print_log
 from mmengine.registry import VISBACKENDS
 from mmengine.utils import digit_version, scandir
 from mmengine.utils.dl_utils import TORCH_VERSION
+from mmengine.dist import master_only
 
 
+@master_only
 def force_init_env(old_func: Callable) -> Any:
     """Those methods decorated by ``force_init_env`` will be forced to call
     ``_init_env`` if the instance has not been fully initiated. This function
